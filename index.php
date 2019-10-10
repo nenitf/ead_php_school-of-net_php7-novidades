@@ -22,3 +22,8 @@ class Exemplo2
         // ...
     }
 }
+
+/**
+ * Caso não seja passado o tipo correto, o php tenta converter
+ * A menos que seja utilizado: declare(strict_types=1);
+ */
