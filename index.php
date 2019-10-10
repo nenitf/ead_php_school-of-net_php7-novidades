@@ -17,13 +17,14 @@ class Exemplo2
      * int
      * String
      */
-    function get(Exemplo1 $v)
+    // function name(TipoParametro Var):TipoRetorno
+    function get(Exemplo1 $v):bool
     {
         // ...
     }
 }
 
 /**
- * Caso não seja passado o tipo correto, o php tenta converter
+ * Caso não seja retornado o tipo correto, o php tenta converter
  * A menos que seja utilizado: declare(strict_types=1);
  */
