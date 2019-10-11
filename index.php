@@ -1,45 +1,24 @@
 <?php
-// Classes anônimas
+// Closure::call();
 
-interface Logger
+class Exemplo
 {
-    public function log(string $msg);
+    private $x = 1;
 }
 
-class App
+/////////////////////////////////////////// Antes
+$getABC = function()
 {
-    private $logger;
+    return $this->x;
+};
 
-    public function getLogger():Logger
-    {
-        return $this->logger;
-    }
+$getX = $getABC->bindTo(new Exemplo, "Exemplo");
+echo $getX();
 
-    public function setLogger(Logger $logger)
-    {
-        $this->logger = $logger;
-    }
-}
-
-// Classe comum
-/*
-class Logg implements Logger
+/////////////////////////////////////////// Depois
+$getX2 = function()
 {
-    public function log(string $msg)
-    {
-        echo $msg;
-    }
-}
- */
-
-$app = new App();
-// $app->setLogger(new Logg);
-$app->setLogger(new class implements Logger {
-    public function log(string $msg)
-    {
-        echo $msg;
-    }
-
-});
-var_dump($app->getLogger());
-
+    return $this->x;
+};
+echo $getX->call(new Exemplo);
+// echo $getABC->call(new Exemplo);
