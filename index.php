@@ -1,10 +1,45 @@
 <?php
-// Constantes com array
+// Classes anônimas
 
-define('ANIMALS', [
-    "dog",
-    "cat",
-    "bird"
-]);
+interface Logger
+{
+    public function log(string $msg);
+}
 
-var_dump(ANIMALS);
+class App
+{
+    private $logger;
+
+    public function getLogger():Logger
+    {
+        return $this->logger;
+    }
+
+    public function setLogger(Logger $logger)
+    {
+        $this->logger = $logger;
+    }
+}
+
+// Classe comum
+/*
+class Logg implements Logger
+{
+    public function log(string $msg)
+    {
+        echo $msg;
+    }
+}
+ */
+
+$app = new App();
+// $app->setLogger(new Logg);
+$app->setLogger(new class implements Logger {
+    public function log(string $msg)
+    {
+        echo $msg;
+    }
+
+});
+var_dump($app->getLogger());
+
